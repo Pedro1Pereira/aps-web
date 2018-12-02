@@ -1,0 +1,67 @@
+{
+    "name": "brinque-feliz-api",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Pedro1Pereira/aps-web.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "async": "^2.6.1",
+        "bcrypt-nodejs": "0.0.3",
+        "express": "^4.16.3",
+        "express-status-monitor": "^1.2.3",
+        "jsonwebtoken": "^8.3.0",
+        "module-alias": "^2.1.0",
+        "moment": "^2.22.2",
+        "mysql": "^2.16.0",
+        "randomatic": "^3.1.0",
+        "randomstring": "^1.1.5"
+    },
+    "_moduleAliases": {
+        "@database": "database.js",
+        "@config": "config.js",
+        "@globals": "globals.js",
+        "@env": ".env.js",
+        "@sender": "sender.js",
+        "@auth": "auth.js",
+        "@functions": "routes/functions",
+        "@insert_question_xls": "routes/committee_agent/insert_question_xls"
+    },
+    "jest": {
+        "reporters": [
+            "default",
+            [
+                "./node_modules/jest-html-reporter",
+                {
+                    "pageTitle": "Test Report"
+                }
+            ]
+        ],
+        "moduleNameMapper": {
+            "@functions/(.*)": "<rootDir>/routes/functions/$1.js",
+            "@/(.*)": "<rootDir>/$1.js",
+            "@database": "<rootDir>/database.js",
+            "@config": "<rootDir>/config.js",
+            "@globals": "<rootDir>/globals.js",
+            "@env": "<rootDir>/.env.js",
+            "@sender": "<rootDir>/sender.js",
+            "@auth": "<rootDir>/auth.js",
+            "@insert_question_xls": "<rootDir>/routes/committee_agent/insert_question_xls.js"
+        },
+        "coverageThreshold": {
+            "global": {
+                "branches": 60,
+                "functions": 60,
+                "lines": 60
+            }
+        }
+    }
+}
