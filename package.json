@@ -27,7 +27,7 @@
     },
     "_moduleAliases": {
         "@database": "database.js",
-        "@config": "config.js",
+        "@config": "config_db.js",
         "@globals": "globals.js",
         "@env": ".env.js",
         "@sender": "sender.js",

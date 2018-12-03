@@ -23,4 +23,30 @@ module.exports = class Database {
             });
         });
     }
+
+    select(parameter, table, where){
+        
+        let parameters = "*";
+        parameters = parameter;
+
+        return this.query(`SELECT ${parameters} FROM ${table} WHERE ${where};`)
+    }
+
+    update(parameter, table, where){
+        
+        return this.query(`UPDATE ${table} SET ${parameter} WHERE ${where};`)
+    }
+
+    delete(table, where){
+
+        return this.query(`DELETE FROM ${table} WHERE ${where};`)
+
+    }
+
+    insert(parameter, table, values){
+
+        return this.query(`INSERT INTO ${table} ${parameter} VALUES ${values};`)
+
+    }
+
 };

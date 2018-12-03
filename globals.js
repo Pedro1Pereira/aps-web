@@ -9,6 +9,5 @@ module.exports = {
     port,
     address,
     fullAddress,
-    base_url,
-    questions_quantity,
+    base_url
 };
