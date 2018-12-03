@@ -10,11 +10,13 @@ module.exports = (req, res) => {
 
     const db = new Database(config);
 
-    //db.insert("(nome, CPF)","cliente",`('${req.body.nome}', '${req.body.cpf}')`);
+
+    //db.insert("(nome, CPF)","cliente",`('Pedro', '450')`)
 
     //Query para adicionar cliente
     //db.query(`INSERT INTO cliente (nome, cpf) VALUES ('Pedro', '450');`)
-    db.insert("(nome, CPF)","cliente",`('Pedro', '450')`)
+
+    db.insert("(nome, CPF)","cliente",`('${req.body.nome}', '${req.body.cpf}')`)
     .then(() => {
         sender.finale(res, 200, 'Cliente cadastrado com sucesso.', db);
     })

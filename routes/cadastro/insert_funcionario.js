@@ -10,12 +10,12 @@ module.exports = (req, res) => {
 
     const db = new Database(config);
 
-    req.body.password = bcrypt.hashSync(req.body.password);
+    const password = bcrypt.hashSync(req.body.password);
 
-    //db.insert("(nome, CPF)","cliente",`('${req.body.nome}', '${req.body.cpf}')`);
+    //db.insert("(nome, CPF)","cliente",`('Pedro', '450')`)
 
-    //Query para adicionar cliente
-    db.insert("(nome, CPF)","cliente",`('Pedro', '450')`)
+    //Query para adicionar funcionario
+    db.insert("(nome, CPF, password)","funcionario",`('${req.body.nome}', '${req.body.cpf}', '${password}')`)
     .then(() => {
         sender.finale(res, 200, 'Cliente cadastrado com sucesso.', db);
     })
