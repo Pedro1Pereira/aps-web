@@ -9,19 +9,18 @@ const jwt = require('jsonwebtoken');
 const env = require('@env');
 
 module.exports = (req, res) => {
+
     const db = new Database(config);
 
     // Query que verifica se o email está cadastrado no sistema
-    db.query(
-        `SELECT email FROM committee_agent WHERE email = '${req.body.email}'`
-    )
+    db.query(`SELECT e-mail FROM funcionario WHERE email = '${req.body.email}'`)
         .then(result => {
             if (result[0]) {
-                //Query traz os dados do delegado
+                //Query traz os dados do funcioanrio
                 db.query(
-                    `SELECT encrypted_password, email, name
-                     FROM committee_agent 
-                     WHERE email = '${result[0].email}'`
+                    `SELECT password, e-mail, nome
+                     FROM funcionario 
+                     WHERE e-mail = '${result[0].email}'`
                 ).then(result => {
                     const pass_from_user = req.body.password;
                     const pass = result[0].encrypted_password;
@@ -40,12 +39,6 @@ module.exports = (req, res) => {
                             });
 
                             user.token = token;
-
-                            db.query(
-                                `UPDATE committee_agent SET 
-                                    last_login = NOW()
-                                    WHERE email = '${result[0].email}'`
-                            );
 
                             sender.finale(res, 200, user, db);
                         } else {
